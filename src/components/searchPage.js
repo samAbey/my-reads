@@ -13,7 +13,11 @@ class SearchPage extends Component {
     this.setState ({
       query: event.target.value
     });
-    this.props.searchBooks(this.state.query, 10);
+
+    if (event.target.value.length >= 3) {
+      this.props.searchBooks(this.state.query, 10);
+    }
+
   }
 
   render () {
