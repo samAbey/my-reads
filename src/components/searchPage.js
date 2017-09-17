@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Book from './book';
 
 
 class SearchPage extends Component {
@@ -11,7 +12,7 @@ class SearchPage extends Component {
     this.setState ({
       query: event.target.value
     });
-    this.props.searchBooks(this.state.query, 20)
+    this.props.searchBooks(this.state.query, 10);
   }
 
   render () {
@@ -39,7 +40,13 @@ class SearchPage extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <ol className="books-grid">
+            {
+              this.props.searchResults.map((book, index) => <li key={book.id}>
+                <Book book={book}/>
+              </li>)
+            }
+          </ol>
         </div>
       </div>
     );

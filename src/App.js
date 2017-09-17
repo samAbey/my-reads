@@ -20,9 +20,11 @@ class BooksApp extends React.Component {
 
   searchBooks = (query, maxResults) => {
     BooksAPI.search (query, maxResults).then (results => {
-      this.setState({
-        searchResults: results
-      });
+      if (Array.isArray(results)) {
+        this.setState({
+          searchResults: results
+        });
+      }
     });
   }
 
@@ -31,7 +33,7 @@ class BooksApp extends React.Component {
       <Router>
         <div className="app">
           <Route exact path="/" component={ListBooks} />
-          <Route path="/search" render={() => <SearchPage searchBooks={this.searchBooks}/> } />
+          <Route path="/search" render={() => <SearchPage searchBooks={this.searchBooks} searchResults={this.state.searchResults}/> } />
         </div>
       </Router>
     )
