@@ -6,6 +6,9 @@ import './App.css'
 import ListBooks from './components/listBooks';
 import SearchPage from './components/searchPage';
 
+// React Router
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 class BooksApp extends React.Component {
   state = {
     /**
@@ -19,9 +22,12 @@ class BooksApp extends React.Component {
 
   render() {
     return (
-      <div className="app">
-        {this.state.showSearchPage ? <SearchPage />: <ListBooks />}
-      </div>
+      <Router>
+        <div className="app">
+          <Route exact path="/" component={ListBooks} />
+          <Route path="/search" component={SearchPage} />
+        </div>
+      </Router>
     )
   }
 }
