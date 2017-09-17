@@ -15,7 +15,12 @@ import * as BooksAPI from './BooksAPI';
 class BooksApp extends React.Component {
 
   state = {
-    searchResults: []
+    searchResults: [],
+    myBooks: []
+  }
+
+  componentDidMount () {
+    this.getAll ();
   }
 
   searchBooks = (query, maxResults) => {
@@ -25,6 +30,14 @@ class BooksApp extends React.Component {
           searchResults: results
         });
       }
+    });
+  }
+
+  getAll = () => {
+    BooksAPI.getAll ().then (results => {
+      this.setState ({
+        myBooks: results
+      })
     });
   }
 
