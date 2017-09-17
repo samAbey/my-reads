@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 // React Router
 import { Link } from 'react-router-dom';
 
+import Book from './book';
+
 class ListBooks extends Component {
 
   render () {
@@ -17,6 +19,15 @@ class ListBooks extends Component {
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
+                    {this.props.myBooks.map ((book, index) => {
+                      return (
+                        <li>
+                          <Book
+                            book={book}
+                          />
+                        </li>
+                      )
+                    })}
                   <li>
                     <div className="book">
                       <div className="book-top">
