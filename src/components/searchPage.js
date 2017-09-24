@@ -51,7 +51,7 @@ class SearchPage extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          {this.props.searchResults.length===0?<p>There are no results that match your search</p>:null}
+          {this.props.searchResults.length===0?<div><p>There are no books to show. Please try the search bar..</p><p style={{fontStyle: 'italic'}}>Type atleast 3 letters minimum</p></div>:null}
           <ol className="books-grid">
             {
               this.props.searchResults.map((book, index) => <li key={book.id}>
