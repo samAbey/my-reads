@@ -13,8 +13,6 @@ class ListBooks extends Component {
     myBooks: PropTypes.array.isRequired
   }
 
-
-
   render () {
     console.log (this.props.myBooks)
     return (
@@ -25,6 +23,8 @@ class ListBooks extends Component {
         <div className="list-books-content">
           <div>
             <BookShelf shelf="currentlyReading" title="Currently Reading" books={this.props.myBooks}/>
+            <BookShelf shelf="wantToRead" title="Want To Read" books={this.props.myBooks}/>
+            <BookShelf shelf="read" title="Read" books={this.props.myBooks}/>
           </div>
         </div>
         <div className="open-search">
