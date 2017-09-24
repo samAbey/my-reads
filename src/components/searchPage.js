@@ -51,6 +51,7 @@ class SearchPage extends Component {
           </div>
         </div>
         <div className="search-books-results">
+          {this.props.searchResults.length===0?<p>There are no results that match your search</p>:null}
           <ol className="books-grid">
             {
               this.props.searchResults.map((book, index) => <li key={book.id}>
