@@ -7,7 +7,8 @@ import { PropTypes } from 'prop-types';
 class SearchPage extends Component {
 
   static propTypes = {
-    searchResults: PropTypes.array.isRequired
+    searchResults: PropTypes.array.isRequired,
+    updateShelf: PropTypes.func.isRequired
   }
 
   state = {
@@ -53,7 +54,7 @@ class SearchPage extends Component {
           <ol className="books-grid">
             {
               this.props.searchResults.map((book, index) => <li key={book.id}>
-                <Book book={book}/>
+                <Book book={book} updateShelf={this.props.updateShelf}/>
               </li>)
             }
           </ol>

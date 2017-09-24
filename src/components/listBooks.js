@@ -10,7 +10,8 @@ import BookShelf from './bookShelf';
 class ListBooks extends Component {
 
   static proptypes = {
-    myBooks: PropTypes.array.isRequired
+    myBooks: PropTypes.array.isRequired,
+    updateShelf: PropTypes.func.isRequired
   }
 
   render () {
@@ -22,9 +23,9 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf shelf="currentlyReading" title="Currently Reading" books={this.props.myBooks}/>
-            <BookShelf shelf="wantToRead" title="Want To Read" books={this.props.myBooks}/>
-            <BookShelf shelf="read" title="Read" books={this.props.myBooks}/>
+            <BookShelf updateShelf={this.props.updateShelf} shelf="currentlyReading" title="Currently Reading" books={this.props.myBooks}/>
+            <BookShelf updateShelf={this.props.updateShelf} shelf="wantToRead" title="Want To Read" books={this.props.myBooks}/>
+            <BookShelf updateShelf={this.props.updateShelf} shelf="read" title="Read" books={this.props.myBooks}/>
           </div>
         </div>
         <div className="open-search">

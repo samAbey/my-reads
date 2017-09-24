@@ -8,7 +8,7 @@ const Book = (props) => {
       <div className="book-top">
         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url('${props.book.imageLinks?props.book.imageLinks.smallThumbnail:null}')` }}></div>
         <div className="book-shelf-changer">
-          <select>
+          <select value={props.book.shelf} onChange={(event) => {props.updateShelf (props.book, event.target.value)}}>
             <option value="none" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
@@ -24,7 +24,8 @@ const Book = (props) => {
 }
 
 Book.propTypes = {
-   book: PropTypes.object.isRequired
+   book: PropTypes.object.isRequired,
+   updateShelf: PropTypes.func.isRequired
 }
 
 export default Book;

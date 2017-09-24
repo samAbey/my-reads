@@ -8,7 +8,8 @@ class BookShelf extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     books: PropTypes.array.isRequired,
-    shelf: PropTypes.string.isRequired
+    shelf: PropTypes.string.isRequired,
+    updateShelf: PropTypes.func.isRequired
   }
 
   render () {
@@ -22,6 +23,7 @@ class BookShelf extends React.Component {
                   <li key={book.id}>
                     <Book
                       book={book}
+                      updateShelf={this.props.updateShelf}
                     />
                   </li>
                 )
