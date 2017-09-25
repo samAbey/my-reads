@@ -12,15 +12,28 @@ class SearchPage extends Component {
 
   static propTypes = {
     searchResults: PropTypes.array.isRequired,
-    updateShelf: PropTypes.func.isRequired
+    updateShelf: PropTypes.func.isRequired,
+    myBooks: PropTypes.array.isRequired
   }
 
 
   handleQueryUpdate = (event) => {
 
     if (event.target.value) {
-      this.props.searchBooks(event.target.value, 10)
+      this.props.searchBooks(event.target.value, 10);
     }
+
+  }
+
+  findShelf = obj => {
+
+    for (let i = 0; i < this.props.myBooks.length; i++) {
+        if (this.props.myBooks[i].id === obj.id) {
+            return this.props.myBooks[i].shelf;
+        }
+    }
+
+    return 'none';
 
   }
 
@@ -53,7 +66,7 @@ class SearchPage extends Component {
           <ol className="books-grid">
             {
               this.props.searchResults.map((book, index) => <li key={book.id}>
-                <Book book={book} updateShelf={this.props.updateShelf}/>
+                <Book book={book} updateShelf={this.props.updateShelf} shelf={this.findShelf(book)}/>
               </li>)
             }
           </ol>

@@ -89,7 +89,7 @@ class BooksApp extends React.Component {
         <div className="app">
           {this.state.isfetching?<Preloader />:null}
           <Route exact path="/" render={() => <ListBooks updateShelf={this.updateShelf} myBooks={this.state.myBooks} /> } />
-          <Route path="/search" render={() => <SearchPage updateShelf={this.updateShelf} searchBooks={this.searchBooks} searchResults={this.state.searchResults}/> } />
+          <Route path="/search" render={() => <SearchPage updateShelf={this.updateShelf} myBooks={this.state.myBooks} searchBooks={this.searchBooks} searchResults={this.state.searchResults}/> } />
         </div>
       </Router>
     )
