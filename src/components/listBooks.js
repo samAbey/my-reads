@@ -15,7 +15,6 @@ class ListBooks extends Component {
   }
 
   render () {
-    console.log (this.props.myBooks)
     return (
       <div className="list-books">
         <div className="list-books-title">
