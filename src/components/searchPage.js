@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import Book from './book';
-import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 
+// Custom components
+import Book from './book';
+
+// 3rd
+import { Debounce } from 'react-throttle';
+import { Link } from 'react-router-dom';
 
 class SearchPage extends Component {
 
@@ -11,17 +15,11 @@ class SearchPage extends Component {
     updateShelf: PropTypes.func.isRequired
   }
 
-  state = {
-    query: ''
-  }
 
   handleQueryUpdate = (event) => {
-    this.setState ({
-      query: event.target.value
-    });
 
-    if (event.target.value.length >= 3) {
-      this.props.searchBooks(this.state.query, 10);
+    if (event.target.value) {
+      this.props.searchBooks(event.target.value, 10)
     }
 
   }
@@ -40,18 +38,18 @@ class SearchPage extends Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-
-            <input
-              type="text"
-              placeholder="Search by title or author"
-              onChange={this.handleQueryUpdate}
-              value={this.state.query}
-            />
+            <Debounce time="500" handler="onChange">
+              <input
+                type="text"
+                placeholder="Search by title or author"
+                onChange={this.handleQueryUpdate}
+              />
+            </Debounce>
 
           </div>
         </div>
         <div className="search-books-results">
-          {this.props.searchResults.length===0?<div><p>There are no books to show. Please try the search bar..</p><p style={{fontStyle: 'italic'}}>Type atleast 3 letters minimum</p></div>:null}
+          {this.props.searchResults.length===0?<div><p>There are no books to show. Please try the search bar..</p></div>:null}
           <ol className="books-grid">
             {
               this.props.searchResults.map((book, index) => <li key={book.id}>
